@@ -1,0 +1,130 @@
+basePath: /
+consumes:
+- application/json
+definitions:
+  Todo:
+    properties:
+      id:
+        description: The task unique identifier
+        readOnly: true
+        type: integer
+      task:
+        description: The task details
+        type: string
+    required:
+    - task
+    type: object
+info:
+  description: A simple Todo API
+  title: Todo API
+  version: '1.0'
+paths:
+  /todos/:
+    get:
+      operationId: list_todos
+      parameters:
+      - description: An optional fields mask
+        format: mask
+        in: header
+        name: X-Fields
+        type: string
+      responses:
+        '200':
+          description: Success
+          schema:
+            items:
+              $ref: '#/definitions/Todo'
+            type: array
+      summary: List all tasks
+      tags:
+      - todos
+    post:
+      operationId: create_todo
+      parameters:
+      - in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/Todo'
+      - description: An optional fields mask
+        format: mask
+        in: header
+        name: X-Fields
+        type: string
+      responses:
+        '201':
+          description: Success
+          schema:
+            $ref: '#/definitions/Todo'
+      summary: Create a new task
+      tags:
+      - todos
+  /todos/{id}:
+    delete:
+      operationId: delete_todo
+      responses:
+        '204':
+          description: Todo deleted
+        '404':
+          description: Todo not found
+      summary: Delete a task given its identifier
+      tags:
+      - todos
+    get:
+      operationId: get_todo
+      parameters:
+      - description: An optional fields mask
+        format: mask
+        in: header
+        name: X-Fields
+        type: string
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/Todo'
+        '404':
+          description: Todo not found
+      summary: Fetch a given resource
+      tags:
+      - todos
+    parameters:
+    - description: The task identifier
+      in: path
+      name: id
+      required: true
+      type: integer
+    put:
+      operationId: put_todo
+      parameters:
+      - in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/Todo'
+      - description: An optional fields mask
+        format: mask
+        in: header
+        name: X-Fields
+        type: string
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/Todo'
+        '404':
+          description: Todo not found
+      summary: Update a task given its identifier
+      tags:
+      - todos
+produces:
+- application/json
+responses:
+  MaskError:
+    description: When any error occurs on mask
+  ParseError:
+    description: When a mask can't be parsed
+swagger: '2.0'
+tags:
+- description: TODO operations
+  name: todos
