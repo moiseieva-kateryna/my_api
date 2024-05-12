@@ -15,7 +15,7 @@ definitions:
     - task
     type: object
 info:
-  description: A simple Todo API !!!!
+  description: A simple Todo API
   title: Todo API
   version: '1.0'
 paths:
@@ -35,7 +35,7 @@ paths:
             items:
               $ref: '#/definitions/Todo'
             type: array
-      summary: List all tasks
+      summary: List all tasks!!!
       tags:
       - todos
     post:
