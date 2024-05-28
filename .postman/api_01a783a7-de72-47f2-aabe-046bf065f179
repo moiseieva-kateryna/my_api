@@ -13,5 +13,6 @@ rootDirectory = postman/collections
 [config.relations.collections.metaData]
 
 [config.relations.apiDefinition]
+files[] = {"path":"yamldoc.yml","metaData":{}}
 
 [config.relations.apiDefinition.metaData]
