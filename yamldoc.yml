@@ -16,7 +16,7 @@ definitions:
     type: object
 info:
   description: A simple Todo API
-  title: Todo API!!!!!
+  title: Todo API
   version: '1.0'
 paths:
   /todos/:
